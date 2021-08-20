@@ -45,21 +45,20 @@ public class BasicStepDefinition {
         requiredField.sendKeys(StaticDataEnum.CUSTOMER_LASTNAME.toString());
         requiredField = driver.findElement(By.id(StaticDataEnum.ELEMENT_FORM_PASSWORD.toString()));
         requiredField.sendKeys(StaticDataEnum.CUSTOMER_PASSWORD.toString());
-        requiredField = driver.findElement(By.id("address1"));
-        requiredField.sendKeys("26 High Street");
-        requiredField = driver.findElement(By.id("city"));
-        requiredField.sendKeys("Glasgow");
-        Select requiredSelect = new Select(driver.findElement(By.id("id_state")));
-        requiredSelect.selectByIndex(3);
-        requiredField = driver.findElement(By.id("postcode"));
+        requiredField = driver.findElement(By.id(StaticDataEnum.ELEMENT_FORM_ADDRESS.toString()));
+        requiredField.sendKeys(StaticDataEnum.CUSTOMER_ADDRESS.toString());
+        requiredField = driver.findElement(By.id(StaticDataEnum.ELEMENT_FORM_CITY.toString()));
+        requiredField.sendKeys(StaticDataEnum.CUSTOMER_CITY.toString());
+        Select requiredSelect = new Select(driver.findElement(By.id(StaticDataEnum.ELEMENT_FORM_STATE_ID.toString())));
+        requiredSelect.selectByIndex(Integer.parseInt(StaticDataEnum.THREE.toString()));
+        requiredField = driver.findElement(By.id(StaticDataEnum.ELEMENT_FORM_POSTCODE.toString()));
         requiredField.sendKeys(StaticDataEnum.CUSTOMER_PASSWORD.toString());
-        requiredSelect = new Select(driver.findElement(By.id("id_country")));
-        requiredSelect.selectByIndex(1);
-        requiredField = driver.findElement(By.id("phone_mobile"));
-        requiredField.sendKeys("555555");
-        requiredField = driver.findElement(By.id("submitAccount"));
+        requiredSelect = new Select(driver.findElement(By.id(StaticDataEnum.ELEMENT_FORM_COUNTRY_ID.toString())));
+        requiredSelect.selectByIndex(Integer.parseInt(StaticDataEnum.ONE.toString()));
+        requiredField = driver.findElement(By.id(StaticDataEnum.ELEMENT_FORM_MOBILE_PHONE.toString()));
+        requiredField.sendKeys(StaticDataEnum.CUSTOMER_PHONE_NUMBER.toString());
+        requiredField = driver.findElement(By.id(StaticDataEnum.ELEMENT_FORM_SUBMIT_BUTTON.toString()));
         requiredField.click();
-        sevenSecondsPause();
         sevenSecondsPause();
 
     }
