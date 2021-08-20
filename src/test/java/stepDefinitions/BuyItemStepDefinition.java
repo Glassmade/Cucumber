@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import models.StaticDataEnum;
 import org.junit.Assert;
@@ -31,6 +32,7 @@ public class BuyItemStepDefinition {
         Assert.assertEquals(customerName,loggedUser.getText());
         BasicStepDefinition.fourSecondsPause();
     }
+
 
     /***
      * Test case Step 1.
@@ -178,13 +180,62 @@ public class BuyItemStepDefinition {
     public void customer_proceeds_to_checkout() throws InterruptedException {
         List<WebElement> linksOfThePage = driver.findElements(By.tagName("a"));
         Assert.assertTrue(linksOfThePage.size()>0);
-        for (WebElement continueShopping : linksOfThePage){
-            if(continueShopping.getAttribute("title").equals("Proceed to checkout")){
-                continueShopping.click();
+        for (WebElement checkout : linksOfThePage){
+            if(checkout.getAttribute("title").equals("Proceed to checkout")){
+                BasicStepDefinition.fourSecondsPause();
+                checkout.click();
                 break;
             }
         }
         BasicStepDefinition.fourSecondsPause();
+
+        WebElement checkoutAgain = driver.findElement(By
+                .xpath("//*[@id=\"center_column\"]/p[2]/a[1]"));
+        checkoutAgain.click();
+        BasicStepDefinition.fourSecondsPause();
+
+    }
+
+    @And("Customer proceeds to address details")
+    public void customer_proceeds_with_address() throws InterruptedException {
+        WebElement addressPage = driver.findElement(By.xpath("//*[@id=\"center_column\"]/form/p/button"));
+        addressPage.click();
         BasicStepDefinition.fourSecondsPause();
     }
+
+    @And("Customer agrees with the terms and conditions")
+    public void customer_agrees_with_terms_and_conditions() throws InterruptedException {
+        WebElement termsOfAgreement = driver.findElement(By.xpath("//*[@id=\"cgv\"]"));
+        termsOfAgreement.click();
+        BasicStepDefinition.fourSecondsPause();
+    }
+
+    @And("Customer proceeds to shipping details")
+    public void customer_proceeds_with_shipping() throws InterruptedException {
+        WebElement addressPage = driver.findElement(By.xpath("//*[@id=\"form\"]/p/button"));
+        addressPage.click();
+        BasicStepDefinition.fourSecondsPause();
+    }
+
+    @And("Customer click pay by bank wire")
+    public void customer_pays_by_bank_wire() throws InterruptedException {
+        WebElement payByBankWireLink = driver.findElement(By.xpath("//*[@id=\"HOOK_PAYMENT\"]/div[1]/div/p/a"));
+        payByBankWireLink.click();
+        BasicStepDefinition.fourSecondsPause();
+    }
+
+    @Then("Customer confirms the order")
+    public void customer_confirms_order() throws InterruptedException {
+        WebElement confirmOrderLink = driver.findElement(By.xpath("//*[@id=\"cart_navigation\"]/button"));
+        confirmOrderLink.click();
+        BasicStepDefinition.fourSecondsPause();
+    }
+
+    @And("Customer clicks to go back to their orders")
+    public void customer_redirected_back_to_orders() throws InterruptedException {
+        WebElement backToOrdersLink = driver.findElement(By.xpath("//*[@id=\"center_column\"]/p/a"));
+        backToOrdersLink.click();
+        BasicStepDefinition.fourSecondsPause();
+    }
+
 }

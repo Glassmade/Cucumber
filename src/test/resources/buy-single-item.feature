@@ -10,7 +10,9 @@ Feature:Customer buys an item of clothing
   And Customer clicks another specific clothing item link
   And Customer adds another item to cart
   And Customer proceeds to checkout
-  And Customer proceeds to shipping details
+  And Customer proceeds to address details
   And Customer agrees with the terms and conditions
+  And Customer proceeds to shipping details
   And Customer click pay by bank wire
   Then Customer confirms the order
+  And Customer clicks to go back to their orders
